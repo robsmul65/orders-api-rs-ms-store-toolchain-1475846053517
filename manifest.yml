@@ -1,0 +1,15 @@
+---
+applications:
+- services:
+  - myMicroservicesSQL
+name: MicroservicesOrdersAPI
+host: ms-ordersAPI-${random-word}
+path: JavaOrdersAPI.war
+domain: mybluemix.net
+instances: 1
+memory: 512M
+
+declared-services:
+  myMicroservicesSQL:
+    label: elephantsql
+    plan:  turtle
