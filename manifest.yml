@@ -4,7 +4,7 @@ applications:
   - myMicroservicesSQL
 name: MicroservicesOrdersAPI
 host: ms-ordersAPI-${random-word}
-path: JavaOrdersAPI.war
+path: target/JavaOrdersAPI-0.0.1-SNAPSHOT.war
 domain: mybluemix.net
 instances: 1
 memory: 512M
