@@ -101,18 +101,16 @@ public class ServiceDiscovery implements ServletContextListener{
 			br.close();
 
 			// Response from the request.
-			System.out.println("bad register " + con.getResponseCode() + ": " + response.toString());
+			System.out.println("Bad service discovery register " + con.getResponseCode() + ": " + response.toString());
 		}
 	}
 	
 	private String getApplicationURI(){
 		String appURI = "";
-		String env = System.getenv("VCAP_SERVICES");
+		String env = System.getenv("VCAP_APPLICATION");
 		try {
 			JSONObject vcap = new JSONObject(env);
-			System.out.println("vcap obj: " + vcap.toString());
-			JSONObject vcapApplication = (JSONObject) vcap.get("VCAP_APPLICATION");
-			JSONArray appURIS = (JSONArray) vcapApplication.get("application_uris");
+			JSONArray appURIS = (JSONArray) vcap.get("application_uris");
 			appURI = (String) appURIS.get(0);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
