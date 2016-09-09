@@ -2,14 +2,9 @@
 applications:
 - services:
   - myMicroservicesSQL
+  - myMicroservicesServiceDiscovery
 name: MicroservicesOrdersAPI
 host: ms-ordersAPI-${random-word}
 path: JavaOrdersAPI-0.0.1-SNAPSHOT.war
-domain: mybluemix.net
 instances: 1
 memory: 512M
-
-declared-services:
-  myMicroservicesSQL:
-    label: elephantsql
-    plan:  turtle
