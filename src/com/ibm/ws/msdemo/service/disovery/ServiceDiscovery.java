@@ -38,7 +38,6 @@ public class ServiceDiscovery implements ServletContextListener{
 		String[] sdCreds = getServiceDiscoveryCredentials();
 		this.sdBaseURL = sdCreds[0];
 		this.sdAuthToken = sdCreds[1];
-		System.out.println("service discovery creds are: " + sdBaseURL + " " + sdAuthToken);
 		try {
 			register(sdBaseURL + "/api/v1/instances");
 		} catch (IOException e) {
@@ -82,7 +81,7 @@ public class ServiceDiscovery implements ServletContextListener{
 			}
 			br.close();
 			JSONObject responseJSON = new JSONObject(response.toString());
-			long ttl = (long) responseJSON.get("ttl");
+			int ttl = (int) responseJSON.get("ttl");
 			// We will poll the heartbeat url every x seconds where x is half of the time to live (ttl)
 			long interval = Math.round((ttl * 1000) * .50);
 			JSONObject links = (JSONObject) responseJSON.get("links");
