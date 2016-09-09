@@ -60,7 +60,7 @@ public class ServiceDiscovery implements ServletContextListener{
 				     				     "\"type\": \"tcp\"," +
 				     				     "\"value\": \"" + getApplicationURI() +"\"" +
 				     			         "}," +
-				                       "\"ttl\": 60," +
+				                       "\"ttl\": 300," +
 				     			       "\"status\": \"UP\" " +
 				     			       "}";
 		
