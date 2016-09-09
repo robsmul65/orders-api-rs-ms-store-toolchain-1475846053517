@@ -19,10 +19,22 @@ import org.json.JSONObject;
 
 @WebListener
 public class ServiceDiscovery implements ServletContextListener{
-	private final String sdAuthToken;
-	private final String sdBaseURL;
+	private String sdAuthToken;
+	private String sdBaseURL;
+
+	@Override
+	public void contextInitialized(ServletContextEvent arg0) {
+		init();
+	}
 	
-	public ServiceDiscovery(){
+	@Override
+	public void contextDestroyed(ServletContextEvent arg0) {
+		System.out.println("Goodbye!");
+	}
+	
+	public void init(){
+		// Register this application on start up
+		System.out.println("Registering application with service discovery...");
 		String[] sdCreds = getServiceDiscoveryCredentials();
 		this.sdBaseURL = sdCreds[0];
 		this.sdAuthToken = sdCreds[1];
@@ -32,18 +44,6 @@ public class ServiceDiscovery implements ServletContextListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	@Override
-	public void contextInitialized(ServletContextEvent arg0) {
-		// Register this application on start up
-		System.out.println("Registering application with service discovery...");
-		new ServiceDiscovery();
-	}
-	
-	@Override
-	public void contextDestroyed(ServletContextEvent arg0) {
-		System.out.println("Goodbye!");
 	}
 	
 	// Send a POST request to service discovery service to register this applications URI under the name "Orders-API"
@@ -169,7 +169,8 @@ class RunHeartbeat extends TimerTask{
 			}
 			else if(HttpURLConnection.HTTP_GONE == con.getResponseCode()){
 				// The heartbeat failed to renew (maybe due to network outage). We will re-register the subscription to service discovery.
-				new ServiceDiscovery();
+				ServiceDiscovery sd = new ServiceDiscovery();
+				sd.init();
 				this.cancel();
 			}
 			else{
