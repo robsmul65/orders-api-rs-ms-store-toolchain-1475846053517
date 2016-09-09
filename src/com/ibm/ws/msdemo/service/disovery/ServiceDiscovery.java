@@ -38,7 +38,7 @@ public class ServiceDiscovery implements ServletContextListener{
 		String[] sdCreds = getServiceDiscoveryCredentials();
 		this.sdBaseURL = sdCreds[0];
 		this.sdAuthToken = sdCreds[1];
-		
+		System.out.println("service discovery creds are: " + sdBaseURL + " " + sdAuthToken);
 		try {
 			register(sdBaseURL + "/api/v1/instances");
 		} catch (IOException e) {
@@ -110,7 +110,9 @@ public class ServiceDiscovery implements ServletContextListener{
 		String env = System.getenv("VCAP_SERVICES");
 		try {
 			JSONObject vcap = new JSONObject(env);
-			JSONArray appURIS = (JSONArray) vcap.get("application_uris");
+			System.out.println("vcap obj: " + vcap.toString());
+			JSONObject vcapApplication = (JSONObject) vcap.get("VCAP_APPLICATION");
+			JSONArray appURIS = (JSONArray) vcapApplication.get("application_uris");
 			appURI = (String) appURIS.get(0);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
