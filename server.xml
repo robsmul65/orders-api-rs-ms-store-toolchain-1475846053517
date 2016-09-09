@@ -1,0 +1,21 @@
+    <server>
+       <featureManager>
+          <feature>beanValidation-1.1</feature>
+          <feature>jaxrs-2.0</feature>
+          <feature>jdbc-4.1</feature>
+          <feature>jndi-1.0</feature>
+          <feature>jsp-2.3</feature>
+          <feature>servlet-3.1</feature>
+       </featureManager>
+
+       <application name='JavaOrdersAPI' location='JavaOrdersAPI-0.0.1-SNAPSHOT.war' type='war' context-root='/'/>
+       <httpEndpoint id='defaultHttpEndpoint' host='*' httpPort='${port}'/>
+       <webContainer trustHostHeaderPort='true' extractHostHeaderPort='true'/>
+       <webContainer deferServletLoad="false"/> 
+       <include location='runtime-vars.xml'/>
+       <logging logDirectory='${application.log.dir}' consoleLogLevel='INFO'/>
+       <httpDispatcher enableWelcomePage='false'/>
+       <applicationMonitor dropinsEnabled='false' updateTrigger='mbean'/>
+       <config updateTrigger='mbean'/>
+       <appstate appName='myapp' markerPath='${home}/../.liberty.state'/>
+    </server>
