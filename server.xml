@@ -1,11 +1,10 @@
     <server>
        <featureManager>
-          <feature>beanValidation-1.1</feature>
           <feature>jaxrs-2.0</feature>
           <feature>jdbc-4.1</feature>
           <feature>jndi-1.0</feature>
-          <feature>jsp-2.3</feature>
           <feature>servlet-3.1</feature>
+          <feature>jpa-2.1</feature>
        </featureManager>
 
        <application name='JavaOrdersAPI' location='JavaOrdersAPI-0.0.1-SNAPSHOT.war' type='war' context-root='/'/>
