@@ -5,6 +5,6 @@ applications:
   - myMicroservicesServiceDiscovery
 name: MicroservicesOrdersAPI
 host: ms-ordersAPI-${random-word}
-path: JavaOrdersAPI-0.0.1-SNAPSHOT.war
+path: ./defaultServer
 instances: 1
 memory: 512M
